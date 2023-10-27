@@ -1,13 +1,25 @@
 "use client";
+import { clearUser } from "@/state/features/userSlice";
+import axios from "axios";
 // components/Navbar.tsx
-import Link from 'next/link';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const handleLogout = async () => {
+    dispatch(clearUser());
+    const res = await axios.get("/api/users/logout");
+    console.log(res.data);
+    router.push("/auth");
+  };
   return (
     <nav className="bg-red-700 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
-          <p className="text-white text-2xl font-bold">Netflix</p>
+          <p className="text-white text-2xl font-bold">Movie-Zone</p>
         </Link>
 
         <div className="lg:flex hidden space-x-4">
@@ -15,7 +27,7 @@ const Navbar: React.FC = () => {
             <p className="text-white hover:text-gray-300">Movies</p>
           </Link>
 
-          <Link href="/tv-shows">
+          <Link href="/tv">
             <p className="text-white hover:text-gray-300">TV Shows</p>
           </Link>
 
@@ -29,9 +41,9 @@ const Navbar: React.FC = () => {
             Search
           </Link>
 
-          <Link href="/profile" className="text-white hover:text-gray-300">
+          <p onClick={handleLogout} className="text-white hover:text-gray-300">
             Profile
-          </Link>
+          </p>
         </div>
 
         <div className="lg:hidden block">

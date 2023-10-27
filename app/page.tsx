@@ -1,6 +1,7 @@
 "use client";
 import { MovieCard } from "@/Types";
 import Navbar from "@/components/Navbar";
+import Card from "@/components/card";
 import { RootState } from "@/state/store";
 import {
   getPopularMedias,
@@ -16,7 +17,6 @@ export default function Home() {
   const [TrendingData, setTrendingData] = useState<[MovieCard]>([undefined]);
   const [PopularData, setPopularData] = useState<[MovieCard]>([undefined]);
   const [TopratedData, setTopratedData] = useState<[MovieCard]>([undefined]);
-  const baseUrl = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
     const fetcData = async () => {
       let res = await getTrendingMedias("movie");
@@ -77,19 +77,16 @@ export default function Home() {
           ) : (
             <div className="flex flex-wrap ">
               {TrendingData.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  id={item?.id}
+                  title={item?.title}
+                  key={item?.image}
+                />
               ))}
             </div>
           )}
-        </div> 
+        </div>
         <div>
           <h1>Popular Movies</h1>
           {PopularData[0] === undefined ? (
@@ -97,19 +94,16 @@ export default function Home() {
           ) : (
             <div className="flex flex-wrap ">
               {PopularData.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  id={item?.id}
+                  title={item?.title}
+                  key={item?.image}
+                />
               ))}
             </div>
           )}
-        </div> 
+        </div>
         <div>
           <h1>Toprated Movies</h1>
           {TopratedData[0] === undefined ? (
@@ -117,19 +111,16 @@ export default function Home() {
           ) : (
             <div className="flex flex-wrap ">
               {TopratedData.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  id={item?.id}
+                  title={item?.title}
+                  key={item?.image}
+                />
               ))}
             </div>
           )}
-        </div> 
+        </div>
       </div>
     </>
   );

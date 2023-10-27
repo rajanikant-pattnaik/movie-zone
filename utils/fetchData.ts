@@ -1,4 +1,5 @@
-import axios from "axios"
+import { MovieCard } from "@/Types";
+import axios from "axios";
 
 export const getTrendingMedias = async (type: String) => {
   try {
@@ -21,7 +22,6 @@ export const getTopratedMedias = async (type: String) => {
     );
 
     const data = await res.data;
-
     return data;
   } catch (e) {
     console.log(e);
@@ -50,7 +50,15 @@ export const getTVorMoviesByGenre = async (type: String, id: Number) => {
 
     const data = await res.data;
 
-    return data;
+    const results = data.results;
+    const resultData: [MovieCard] = results.map((item: any) => {
+      return {
+        image: item.backdrop_path,
+        id: item.id,
+        title: item.name || item.title,
+      };
+    });
+    return resultData;
   } catch (e) {
     console.log(e);
   }
@@ -81,7 +89,15 @@ export const getTVorMovieSearchResults = async (
 
     const data = await res.data;
 
-    return data;
+    const results = data.results;
+    const resultData: [MovieCard] = results.map((item: any) => {
+      return {
+        image: item.backdrop_path,
+        id: item.id,
+        title: item.name || item.title,
+      };
+    });
+    return resultData;
   } catch (e) {
     console.log(e);
   }
