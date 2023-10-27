@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
     router.push("/auth");
   };
   return (
-    <nav className="bg-red-700 p-4">
+    <nav className="relative z-10 bg-red-700 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <p className="text-white text-2xl font-bold">Movie-Zone</p>

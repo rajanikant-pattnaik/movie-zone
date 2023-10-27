@@ -8,7 +8,7 @@ import {
   getTopratedMedias,
   getTrendingMedias,
 } from "@/utils/fetchData";
-import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div>
+      <div className=" relative z-10">
         {user !== null ? (
           <div>
             <p>{user.email}</p>
@@ -77,12 +77,13 @@ export default function Home() {
           ) : (
             <div className="flex flex-wrap ">
               {TrendingData.map((item) => (
-                <Card
-                  image={item?.image}
-                  id={item?.id}
-                  title={item?.title}
+                <Link
+                  href={`/watch/movie/${item?.id}`}
                   key={item?.image}
-                />
+                  className="cursor-pointer"
+                >
+                  <Card image={item?.image} id={item?.id} title={item?.title} />
+                </Link>
               ))}
             </div>
           )}

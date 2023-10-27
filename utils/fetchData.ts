@@ -1,5 +1,6 @@
 import { MovieCard } from "@/Types";
 import axios from "axios";
+import { FormatString } from "mongoose";
 
 export const getTrendingMedias = async (type: String) => {
   try {
@@ -64,7 +65,7 @@ export const getTVorMoviesByGenre = async (type: String, id: Number) => {
   }
 };
 
-export const getTVorMovieVideosByID = async (type: String, id: Number) => {
+export const getTVorMovieVideosByID = async (type: String, id: String) => {
   try {
     const res = await axios.get(
       `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=e68381b7d80e4f3f47212ca680bbacea&language=en-US&append_to_response=videos`
@@ -103,7 +104,7 @@ export const getTVorMovieSearchResults = async (
   }
 };
 
-export const getTVorMovieDetailsByID = async (type: String, id: Number) => {
+export const getTVorMovieDetailsByID = async (type: String, id: String) => {
   try {
     const res = await axios.get(
       `https://api.themoviedb.org/3/${type}/${id}?api_key=e68381b7d80e4f3f47212ca680bbacea&language=en-US&append_to_response=videos`
