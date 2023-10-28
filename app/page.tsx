@@ -1,5 +1,6 @@
 "use client";
 import { MovieCard } from "@/Types";
+import BannerSlider from "@/components/BannerSlider";
 import Navbar from "@/components/Navbar";
 import Card from "@/components/card";
 import { RootState } from "@/state/store";
@@ -8,12 +9,9 @@ import {
   getTopratedMedias,
   getTrendingMedias,
 } from "@/utils/fetchData";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function Home() {
-  const user = useSelector((state: RootState) => state.user.user);
   const [TrendingData, setTrendingData] = useState<[MovieCard]>([undefined]);
   const [PopularData, setPopularData] = useState<[MovieCard]>([undefined]);
   const [TopratedData, setTopratedData] = useState<[MovieCard]>([undefined]);
@@ -24,7 +22,7 @@ export default function Home() {
       setTrendingData(
         newData?.map((item: any) => {
           return {
-            image: item.backdrop_path,
+            image: item.poster_path,
             id: item.id,
             title: item.title,
           };
@@ -59,24 +57,13 @@ export default function Home() {
     <>
       <Navbar />
       <div className=" relative z-10">
-        {user !== null ? (
-          <div>
-            <p>{user.email}</p>
-            <p>{user.id}</p>
-            <p>{user.username}</p>
-          </div>
-        ) : (
-          <div>
-            <p>No user</p>
-          </div>
-        )}
         <div>
           <h1>Trending Movies</h1>
           {TrendingData[0] === undefined ? (
             <div>No Data</div>
           ) : (
-            <div className="flex flex-wrap ">
-              {TrendingData.map((item) => (
+            <div className="">
+              {/* {TrendingData.map((item) => (
                 <Link
                   href={`/watch/movie/${item?.id}`}
                   key={item?.image}
@@ -84,7 +71,8 @@ export default function Home() {
                 >
                   <Card image={item?.image} id={item?.id} title={item?.title} />
                 </Link>
-              ))}
+              ))} */}
+              <BannerSlider BannerData={TrendingData}/>
             </div>
           )}
         </div>
