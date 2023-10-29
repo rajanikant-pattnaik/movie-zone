@@ -1,6 +1,6 @@
+"use client";
 import { MovieCard } from "@/Types";
 import axios from "axios";
-import { FormatString } from "mongoose";
 
 export const getTrendingMedias = async (type: String) => {
   try {
@@ -57,6 +57,7 @@ export const getTVorMoviesByGenre = async (type: String, id: Number) => {
         image: item.backdrop_path,
         id: item.id,
         title: item.name || item.title,
+        type: type,
       };
     });
     return resultData;

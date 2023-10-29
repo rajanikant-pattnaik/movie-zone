@@ -1,6 +1,7 @@
 "use client";
 import { MovieCard } from "@/Types";
 import Navbar from "@/components/Navbar";
+import Card from "@/components/card";
 import { getTVorMoviesByGenre } from "@/utils/fetchData";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -51,15 +52,13 @@ const Page = () => {
             <h1>Top mystery</h1>
             <div className="flex flex-wrap ">
               {mysteryData?.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
               ))}
             </div>
           </div>
@@ -67,15 +66,13 @@ const Page = () => {
             <h1>Top action adventure</h1>
             <div className="flex flex-wrap ">
               {adventureData?.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
               ))}
             </div>
           </div>
@@ -83,15 +80,13 @@ const Page = () => {
             <h1>Top comedy</h1>
             <div className="flex flex-wrap ">
               {comedyData?.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
               ))}
             </div>
           </div>
@@ -99,15 +94,13 @@ const Page = () => {
             <h1>Top family</h1>
             <div className="flex flex-wrap ">
               {familyData?.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
               ))}
             </div>
           </div>
@@ -115,15 +108,13 @@ const Page = () => {
             <h1>Top crime</h1>
             <div className="flex flex-wrap ">
               {crimeData?.map((item) => (
-                <div key={item?.image}>
-                  <Image
-                    src={`${baseUrl}${item?.image}`}
-                    alt="media"
-                    height={200}
-                    width={250}
-                  />
-                  <p>{item?.title}</p>
-                </div>
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
               ))}
             </div>
           </div>
