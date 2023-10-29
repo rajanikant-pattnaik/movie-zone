@@ -3,7 +3,6 @@ import { MovieCard } from "@/Types";
 import BannerSlider from "@/components/BannerSlider";
 import Navbar from "@/components/Navbar";
 import Card from "@/components/card";
-import { RootState } from "@/state/store";
 import {
   getPopularMedias,
   getTopratedMedias,
@@ -25,6 +24,7 @@ export default function Home() {
             image: item.poster_path,
             id: item.id,
             title: item.title,
+            type: "movie",
           };
         })
       );
@@ -33,9 +33,10 @@ export default function Home() {
       setTopratedData(
         newData?.map((item: any) => {
           return {
-            image: item.backdrop_path,
+            image: item.poster_path,
             id: item.id,
             title: item.title,
+            type: "movie",
           };
         })
       );
@@ -44,9 +45,10 @@ export default function Home() {
       setPopularData(
         newData?.map((item: any) => {
           return {
-            image: item.backdrop_path,
+            image: item.poster_path,
             id: item.id,
             title: item.title,
+            type: "movie",
           };
         })
       );
@@ -63,16 +65,7 @@ export default function Home() {
             <div>No Data</div>
           ) : (
             <div className="">
-              {/* {TrendingData.map((item) => (
-                <Link
-                  href={`/watch/movie/${item?.id}`}
-                  key={item?.image}
-                  className="cursor-pointer"
-                >
-                  <Card image={item?.image} id={item?.id} title={item?.title} />
-                </Link>
-              ))} */}
-              <BannerSlider BannerData={TrendingData}/>
+              <BannerSlider BannerData={TrendingData} />
             </div>
           )}
         </div>
@@ -87,6 +80,7 @@ export default function Home() {
                   image={item?.image}
                   id={item?.id}
                   title={item?.title}
+                  type={item?.type}
                   key={item?.image}
                 />
               ))}
@@ -104,6 +98,7 @@ export default function Home() {
                   image={item?.image}
                   id={item?.id}
                   title={item?.title}
+                  type={item?.type}
                   key={item?.image}
                 />
               ))}

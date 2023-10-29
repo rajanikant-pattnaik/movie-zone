@@ -73,7 +73,7 @@ export const getTVorMovieVideosByID = async (type: String, id: String) => {
 
     const data = await res.data;
 
-    return data;
+    return data.results[0].key;
   } catch (e) {
     console.log(e);
   }
@@ -112,7 +112,11 @@ export const getTVorMovieDetailsByID = async (type: String, id: String) => {
 
     const data = await res.data;
 
-    return data;
+    return {
+      image: data.backdrop_path || data.poster_path,
+      title: data.title || data.name,
+      overview: data.overview,
+    };
   } catch (e) {
     console.log(e);
   }
@@ -125,7 +129,6 @@ export const getSimilarTVorMovies = async (type: String, id: Number) => {
     );
 
     const data = await res.data;
-
     return data;
   } catch (e) {
     console.log(e);

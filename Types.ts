@@ -12,9 +12,11 @@ export type MovieCard =
       image: string;
       id: Number;
       title: string;
+      type: String | undefined;
     };
 export type Props = {
   image: String | undefined;
   id: Number | undefined;
   title: String | undefined;
+  type:String|undefined;
 };
