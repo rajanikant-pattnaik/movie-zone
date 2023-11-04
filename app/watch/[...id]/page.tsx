@@ -9,7 +9,7 @@ import {
 } from "@/utils/fetchData";
 import { MovieCard, details } from "@/Types";
 import Loader from "@/components/Loader";
-import Card from "@/components/Card";
+import Card from "@/components/Cardi";
 import Navbar from "@/components/Navbar";
 
 const Page = () => {

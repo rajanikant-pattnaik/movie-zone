@@ -1,7 +1,7 @@
 "use client";
 import { MovieCard } from "@/Types";
 import Navbar from "@/components/Navbar";
-import Card from "@/components/Card";
+import Card from "@/components/Cardi";
 import { getTVorMoviesByGenre } from "@/utils/fetchData";
 import React, { useEffect, useState } from "react";
 

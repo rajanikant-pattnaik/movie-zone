@@ -2,7 +2,7 @@
 import { MovieCard } from "@/Types";
 import BannerSlider from "@/components/BannerSlider";
 import Navbar from "@/components/Navbar";
-import Card from "@/components/Card";
+import Card from "@/components/Cardi";
 import {
   getPopularMedias,
   getTopratedMedias,

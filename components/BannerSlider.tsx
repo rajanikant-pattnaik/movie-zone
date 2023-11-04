@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { MovieCard } from "@/Types";
-import Card from "./Card";
+import Card from "./Cardi";
 
 type BannerSliderProps = {
   BannerData: MovieCard[];
