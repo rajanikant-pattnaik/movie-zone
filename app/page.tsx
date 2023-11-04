@@ -2,21 +2,23 @@
 import { MovieCard } from "@/Types";
 import BannerSlider from "@/components/BannerSlider";
 import Navbar from "@/components/Navbar";
-import Card from "@/components/card";
+import Card from "@/components/Card";
 import {
   getPopularMedias,
   getTopratedMedias,
   getTrendingMedias,
 } from "@/utils/fetchData";
 import { useEffect, useState } from "react";
-
+import SideBar from "@/components/SideBar";
+import { genreArray } from "@/utils/constants";
 export default function Home() {
   const [TrendingData, setTrendingData] = useState<[MovieCard]>([undefined]);
   const [PopularData, setPopularData] = useState<[MovieCard]>([undefined]);
   const [TopratedData, setTopratedData] = useState<[MovieCard]>([undefined]);
+  const [genre, setGenre] = useState<String>("movie");
   useEffect(() => {
     const fetcData = async () => {
-      let res = await getTrendingMedias("movie");
+      let res = await getTrendingMedias(genre);
       let newData = res.results;
       setTrendingData(
         newData?.map((item: any) => {
@@ -24,11 +26,11 @@ export default function Home() {
             image: item.poster_path,
             id: item.id,
             title: item.title,
-            type: "movie",
+            type: `${genre === "movie" ? "movie" : "tv"}`,
           };
         })
       );
-      res = await getTopratedMedias("movie");
+      res = await getTopratedMedias(genre);
       newData = res.results;
       setTopratedData(
         newData?.map((item: any) => {
@@ -36,11 +38,11 @@ export default function Home() {
             image: item.poster_path,
             id: item.id,
             title: item.title,
-            type: "movie",
+            type: `${genre === "movie" ? "movie" : "tv"}`,
           };
         })
       );
-      res = await getPopularMedias("movie");
+      res = await getPopularMedias(genre);
       newData = res.results;
       setPopularData(
         newData?.map((item: any) => {
@@ -48,24 +50,34 @@ export default function Home() {
             image: item.poster_path,
             id: item.id,
             title: item.title,
-            type: "movie",
+            type: `${genre === "movie" ? "movie" : "tv"}`,
           };
         })
       );
     };
     fetcData();
-  }, []);
+  }, [genre]);
   return (
     <>
       <Navbar />
+      <SideBar array={genreArray} genre={genre} setGenre={setGenre} />
       <div className=" relative z-10">
         <div>
           <h1>Trending Movies</h1>
           {TrendingData[0] === undefined ? (
             <div>No Data</div>
           ) : (
-            <div className="">
-              <BannerSlider BannerData={TrendingData} />
+            <div className="flex flex-wrap justify-center">
+              {/* <BannerSlider BannerData={TrendingData} /> */}
+              {TrendingData?.map((item) => (
+                <Card
+                  image={item?.image}
+                  title={item?.title}
+                  id={item?.id}
+                  type={item?.type}
+                  key={item?.image}
+                />
+              ))}
             </div>
           )}
         </div>
@@ -74,12 +86,13 @@ export default function Home() {
           {PopularData[0] === undefined ? (
             <div>No Data</div>
           ) : (
-            <div className="flex flex-wrap ">
-              {PopularData.map((item) => (
+            <div className="flex flex-wrap justify-center">
+              {/* <BannerSlider BannerData={PopularData} /> */}
+              {PopularData?.map((item) => (
                 <Card
                   image={item?.image}
-                  id={item?.id}
                   title={item?.title}
+                  id={item?.id}
                   type={item?.type}
                   key={item?.image}
                 />
@@ -92,12 +105,13 @@ export default function Home() {
           {TopratedData[0] === undefined ? (
             <div>No Data</div>
           ) : (
-            <div className="flex flex-wrap ">
-              {TopratedData.map((item) => (
+            <div className="flex flex-wrap justify-center">
+              {/* <BannerSlider BannerData={TopratedData} /> */}
+              {TopratedData?.map((item) => (
                 <Card
                   image={item?.image}
-                  id={item?.id}
                   title={item?.title}
+                  id={item?.id}
                   type={item?.type}
                   key={item?.image}
                 />

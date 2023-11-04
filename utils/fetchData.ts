@@ -123,14 +123,23 @@ export const getTVorMovieDetailsByID = async (type: String, id: String) => {
   }
 };
 
-export const getSimilarTVorMovies = async (type: String, id: Number) => {
+export const getSimilarTVorMovies = async (type: String, id: String) => {
   try {
     const res = await axios.get(
       `https://api.themoviedb.org/3/${type}/${id}/similar?api_key=e68381b7d80e4f3f47212ca680bbacea&language=en-US`
     );
 
     const data = await res.data;
-    return data;
+    const results = data.results;
+    const resultData: [MovieCard] = results.map((item: any) => {
+      return {
+        image: item.backdrop_path,
+        id: item.id,
+        title: item.name || item.title,
+        type: type,
+      };
+    });
+    return resultData;
   } catch (e) {
     console.log(e);
   }

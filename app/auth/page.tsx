@@ -55,7 +55,7 @@ const Auth: React.FC = () => {
   };
   return (
     <div className="relative h-screen">
-      <div className="absolute inset-0 opacity-50">
+      <div className="absolute inset-0 opacity-30">
         <Image src="/background.jpg" alt="background image" fill />
       </div>
 

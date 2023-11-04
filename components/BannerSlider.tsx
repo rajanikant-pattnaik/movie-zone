@@ -2,22 +2,25 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { MovieCard } from "@/Types";
-import Banner from "./Banner";
-type Props = {
-  BannerData: [MovieCard];
+import Card from "./Card";
+
+type BannerSliderProps = {
+  BannerData: MovieCard[];
 };
-const BannerSlider: React.FC<Props> = ({ BannerData }) => {
+
+const BannerSlider: React.FC<BannerSliderProps> = ({ BannerData }) => {
   return (
-    <div>
+    <div className="p-4 md:p-8">
       <Swiper
         spaceBetween={50}
         slidesPerView={3}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
+        <div className="flex flex-wrap">
         {BannerData.map((item) => (
           <SwiperSlide key={item?.image}>
-            <Banner
+            <Card
               image={item?.image}
               title={item?.title}
               id={item?.id}
@@ -25,6 +28,8 @@ const BannerSlider: React.FC<Props> = ({ BannerData }) => {
             />
           </SwiperSlide>
         ))}
+        </div>
+        
       </Swiper>
     </div>
   );
