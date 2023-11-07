@@ -6,9 +6,7 @@ import { getTVorMovieSearchResults } from "@/utils/fetchData";
 import React, { useEffect, useState } from "react";
 
 const Page = ({ params }: any) => {
-  const [tvData, setTvData] = useState<[MovieCard] | undefined>([
-    undefined,
-  ]);
+  const [tvData, setTvData] = useState<[MovieCard] | undefined>([undefined]);
   const [movieData, setMovieData] = useState<[MovieCard] | undefined>([
     undefined,
   ]);
@@ -19,9 +17,9 @@ const Page = ({ params }: any) => {
         "movie",
         params.query
       );
-      console.log(tvResult)
-      console.log(movieResult)
-      setTvData(tvResult)
+      console.log(tvResult);
+      console.log(movieResult);
+      setTvData(tvResult);
       setMovieData(movieResult);
     };
     fetchData();
@@ -31,37 +29,40 @@ const Page = ({ params }: any) => {
       <Navbar />
       <div>
         <h1>Tv search results</h1>
-      {
-        tvData===undefined?(
-          <div>
-            No User
-          </div>
-        ):(
+        {tvData === undefined ? (
+          <div>No User</div>
+        ) : (
           <div className="flex flex-wrap ">
             {tvData?.map((item) => (
-                <Card image={item?.image} id={item?.id} title={item?.title} key={item?.image}/>
-              ))}
+              <Card
+                image={item?.image}
+                id={item?.id}
+                title={item?.title}
+                key={item?.image}
+                type={"tv"}
+              />
+            ))}
           </div>
-        )
-      }
+        )}
       </div>
       <div>
         <h1>Movie search results</h1>
-      {
-        movieData===undefined?(
-          <div>
-            No User
-          </div>
-        ):(
+        {movieData === undefined ? (
+          <div>No User</div>
+        ) : (
           <div className="flex flex-wrap ">
             {movieData?.map((item) => (
-                <Card image={item?.image} id={item?.id} title={item?.title} key={item?.image}/>
-              ))}
+              <Card
+                image={item?.image}
+                id={item?.id}
+                title={item?.title}
+                key={item?.image}
+                type={"movie"}
+              />
+            ))}
           </div>
-        )
-      }
+        )}
       </div>
-      
     </div>
   );
 };

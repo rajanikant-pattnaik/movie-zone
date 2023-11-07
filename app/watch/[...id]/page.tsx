@@ -51,7 +51,9 @@ const Page = () => {
                 controls
                 width="100%"
               />
-              <h1 className="text-4xl font-bold mt-4 text-red-900 mb-4">{details?.title}</h1>
+              <h1 className="text-4xl font-bold mt-4 text-red-900 mb-4">
+                {details?.title}
+              </h1>
               <p className="text-red-400">{details?.overview}</p>
             </div>
           )}
